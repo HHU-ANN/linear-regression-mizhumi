@@ -11,11 +11,12 @@ def rg_rs(x,y,a):
     I=np.identity(x.shape[1])
     w=np.dot(np.dot(np.linalg.inv(np.dot(x.T, x) + a* I), x.T), y)
     return w
-def ls_rs(x,y,a=0.1,max=1e5,lt=1e-12):
-    n = x.shape
+def ls_rs(x,y,a=0.1,lt=1e-12):
+    _,n = x.shape
+    # print(n)
     w = np.zeros(n)
     min = 1e10
-    for i in range(max):
+    for i in range(10000):
         l1 = a * (np.sum(np.abs(w)))
         mse = np.sum(((x @ w) - y.T) @ ((x @ w) - y.T).T) / (np.shape(x)[0])
         ls_ls = mse + l1
