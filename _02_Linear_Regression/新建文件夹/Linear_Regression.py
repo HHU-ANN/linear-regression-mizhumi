@@ -12,7 +12,7 @@ def rg_rs(x,y,a):
     w=np.dot(np.dot(np.linalg.inv(np.dot(x.T, x) + a* I), x.T), y)
     return w
 def ls_rs(x,y,a=0.1,max=1e5,lt=1e-12):
-    _, n = x.shape
+    _,n = x.shape
     # print(n)
     w = np.zeros(n)
     min = 1e10
@@ -40,7 +40,7 @@ def lasso(data):
     w = ls_rs(x, y)
     return data @ w[:6] + w[-1]
 
-def read_data(path='../data/exp02/'):
+def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
     y = np.load(path + 'y_train.npy')
     return x, y
